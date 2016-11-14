@@ -16,10 +16,10 @@ func provider() []*ichido.ContentHolder {
 
 func checker(c *ichido.ContentHolder) bool {
 	if c.Value == "bar" {
-        return false
-    }
+		return false
+	}
 
-    return true
+	return true
 }
 
 func invoker(c *ichido.ContentHolder) {
@@ -27,7 +27,7 @@ func invoker(c *ichido.ContentHolder) {
 }
 
 func marker(c *ichido.ContentHolder) {
-    // log content value.
+	// log content value.
 }
 
 func main() {
@@ -36,5 +36,5 @@ func main() {
 	i.RegisterNewlyChecker(checker)
 	i.RegisterInvoker(invoker)
 	i.RegisterInvokedMarker(marker)
-    i.Run()
+	i.Run()
 }
