@@ -7,44 +7,35 @@ import (
 )
 
 type content struct {
-	value string
 	key   int
+	value string
 }
 
-func (c *content) GetValue() interface{} {
-	return c.value
-}
-
-func (c *content) GetKey() interface{} {
-	return c.key
-}
-
-func provider() []ichido.ContentHolder {
-	return []ichido.ContentHolder{
+func provider() []interface{} {
+	return []interface{}{
 		&content{value: "foo", key: 1},
 		&content{value: "bar", key: 2},
 		&content{value: "baz", key: 3},
 	}
 }
 
-func checker(c ichido.ContentHolder) bool {
-	key, ok := c.GetKey().(int)
-
+func checker(c interface{}) bool {
+	co, ok := c.(*content)
 	if !ok {
 		return false
 	}
-	if key == 2 {
+	if co.key == 2 {
 		return false
 	}
 
 	return true
 }
 
-func invoker(c ichido.ContentHolder) {
-	fmt.Printf("content value = %v\n", c.GetValue())
+func invoker(c interface{}) {
+	fmt.Printf("content value = %v\n", c)
 }
 
-func marker(c ichido.ContentHolder) {
+func marker(c interface{}) {
 	// log content value.
 }
 

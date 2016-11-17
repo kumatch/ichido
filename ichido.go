@@ -1,14 +1,9 @@
 package ichido
 
-type ContentHolder interface {
-	GetValue() interface{}
-	GetKey() interface{}
-}
-
-type ContentsProvider func() []ContentHolder
-type NewlyChecker func(content ContentHolder) bool
-type Invoker func(content ContentHolder)
-type InvokedMarker func(content ContentHolder)
+type ContentsProvider func() []interface{}
+type NewlyChecker func(content interface{}) bool
+type Invoker func(content interface{})
+type InvokedMarker func(content interface{})
 
 type Ichido struct {
 	contentProvider ContentsProvider
